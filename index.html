@@ -45,14 +45,19 @@
         transform: scale(1.03);
     }
 
-    .good { background: #4CAF50; color: white; }
-    .bad { background: #e67e22; color: white; }
-    .off { background: #e74c3c; color: white; }
+    .good {
+        background: #4CAF50;
+        color: white;
+    }
 
-    #response {
-        margin-top: 25px;
-        font-size: 22px;
-        font-weight: bold;
+    .bad {
+        background: #e67e22;
+        color: white;
+    }
+
+    .off {
+        background: #e74c3c;
+        color: white;
     }
 </style>
 </head>
@@ -65,21 +70,44 @@
     <button class="good" onclick="answer('good')">😊 Good</button>
     <button class="bad" onclick="answer('bad')">😴 Bad</button>
     <button class="off" onclick="answer('off')">🖕 Fuck Off</button>
-
-    <div id="response"></div>
 </div>
 
 <script>
 function answer(choice) {
-    const response = document.getElementById("response");
+
+    let message = "";
 
     if (choice === "good") {
-        response.textContent = "I am jealous 😒";
+        message = "I am jealous 😒";
     } else if (choice === "bad") {
-        response.textContent = "😢";
+        message = "😢";
     } else {
-        response.textContent = "You too <3";
+        message = "You too <3";
     }
+
+    document.body.innerHTML = `
+        <div style="
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            background:#f4f4f4;
+            font-family:Arial,sans-serif;
+        ">
+            <div style="
+                background:white;
+                padding:40px;
+                border-radius:15px;
+                text-align:center;
+                box-shadow:0 10px 25px rgba(0,0,0,0.15);
+                width:350px;
+            ">
+                <h1>Thanks!</h1>
+                <p style="font-size:28px;">${message}</p>
+                <p>Your response has been recorded.</p>
+            </div>
+        </div>
+    `;
 }
 </script>
 
